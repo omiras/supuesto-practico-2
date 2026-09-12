@@ -81,16 +81,26 @@
             edad: 28,
             lugarNacimiento: "Barcelona",
             foto: "https://randomuser.me/api/portraits/men/32.jpg",
-            likes: 15 // puedes usar esta variable como variable de estado
+            likes: 15
         };
 
-        // Obtenemos el nombre del objeto profile.
         const nombre = document.querySelector("#nombre");
-        nombre.textContent = profile.nombre;
-
-        // La edad
         const edad = document.querySelector("#edad");
+        const lugarNacimiento = document.querySelector("#lugarNacimiento");
+        const foto = document.querySelector("#foto");
+        const numeroLikes = document.querySelector("#numero-likes");
+        const botonLikes = document.querySelector("#boton-likes");
+
+        nombre.textContent = profile.nombre;
         edad.textContent = profile.edad;
+        lugarNacimiento.textContent = profile.lugarNacimiento;
+        foto.src = profile.foto;
+        numeroLikes.textContent = profile.likes;
+
+        botonLikes.addEventListener("click", function () {
+            profile.likes++;
+            numeroLikes.textContent = profile.likes;
+        });
 
     </script>
 

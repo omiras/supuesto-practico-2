@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Marcador deportivo - Solución 1</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .marcador {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .equipo {
+            background-color: white;
+            border: 3px solid #cccccc;
+            border-radius: 10px;
+            padding: 25px;
+            width: 180px;
+        }
+
+        .ganador {
+            border-color: green;
+        }
+
+        .perdedor {
+            border-color: gray;
+        }
+
+        .nombre {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .resultado {
+            font-size: 50px;
+            margin: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+
+        #mensaje {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Marcador deportivo</h1>
+
+    <div class="marcador">
+
+        <div id="caja-local" class="equipo">
+            <div class="nombre">Equipo local</div>
+            <div id="resultado-local" class="resultado">0</div>
+            <button id="boton-local">+1 Local</button>
+        </div>
+
+        <div id="caja-visitante" class="equipo">
+            <div class="nombre">Equipo visitante</div>
+            <div id="resultado-visitante" class="resultado">0</div>
+            <button id="boton-visitante">+1 Visitante</button>
+        </div>
+
+    </div>
+
+    <div id="mensaje">Los equipos van empate</div>
+
+    <script>
+        let resultadoLocal = 0;
+        let resultadoVisitante = 0;
+
+        const local = document.querySelector("#resultado-local");
+        const visitante = document.querySelector("#resultado-visitante");
+        const botonLocal = document.querySelector("#boton-local");
+        const botonVisitante = document.querySelector("#boton-visitante");
+        const cajaLocal = document.querySelector("#caja-local");
+        const cajaVisitante = document.querySelector("#caja-visitante");
+        const mensaje = document.querySelector("#mensaje");
+
+        botonLocal.addEventListener("click", function () {
+            resultadoLocal++;
+            local.textContent = resultadoLocal;
+
+            cajaLocal.classList.remove("ganador", "perdedor");
+            cajaVisitante.classList.remove("ganador", "perdedor");
+
+            if (resultadoLocal > resultadoVisitante) {
+                cajaLocal.classList.add("ganador");
+                cajaVisitante.classList.add("perdedor");
+                mensaje.textContent = "Gana el equipo local";
+            } else if (resultadoLocal < resultadoVisitante) {
+                cajaVisitante.classList.add("ganador");
+                cajaLocal.classList.add("perdedor");
+                mensaje.textContent = "Gana el equipo visitante";
+            } else {
+                cajaLocal.classList.add("perdedor");
+                cajaVisitante.classList.add("perdedor");
+                mensaje.textContent = "Los equipos van empate";
+            }
+        });
+
+        botonVisitante.addEventListener("click", function () {
+            resultadoVisitante++;
+            visitante.textContent = resultadoVisitante;
+
+            cajaLocal.classList.remove("ganador", "perdedor");
+            cajaVisitante.classList.remove("ganador", "perdedor");
+
+            if (resultadoLocal > resultadoVisitante) {
+                cajaLocal.classList.add("ganador");
+                cajaVisitante.classList.add("perdedor");
+                mensaje.textContent = "Gana el equipo local";
+            } else if (resultadoLocal < resultadoVisitante) {
+                cajaVisitante.classList.add("ganador");
+                cajaLocal.classList.add("perdedor");
+                mensaje.textContent = "Gana el equipo visitante";
+            } else {
+                cajaLocal.classList.add("perdedor");
+                cajaVisitante.classList.add("perdedor");
+                mensaje.textContent = "Los equipos van empate";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
